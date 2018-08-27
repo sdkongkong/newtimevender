@@ -1,4 +1,4 @@
-package vender.timevender.com.timevender.launcher.login
+package vender.timevender.com.data.user
 
 
 class PhoneLogin(phoneNum: String, pwd: String) {

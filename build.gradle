@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext.kotlin_version = '1.2.61'
     ext.kotlin_version = '1.2.60'
 
     repositories {
@@ -15,6 +16,7 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+apply plugin: 'kotlin'
 
 allprojects {
     repositories {
@@ -23,6 +25,4 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+
