@@ -14,6 +14,9 @@ class LauncherActivity : AppCompatActivity() {
     @Inject
     lateinit var userRepository: RemoteUserRepository
 
+    @Inject
+    lateinit var database: AppDatabase
+
     lateinit var loginViewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +24,7 @@ class LauncherActivity : AppCompatActivity() {
         setContentView(R.layout.activity_launcher)
         loginViewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         loginViewModel.userRepository = userRepository
+        loginViewModel.database = database
         supportFragmentManager.beginTransaction().replace(R.id.frame, LoginFragment()).commit()
     }
 }

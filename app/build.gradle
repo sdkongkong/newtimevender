@@ -28,6 +28,8 @@ dependencies {
 
     def lifecycle_version = "1.1.1"
     def mockitoVersion = "2.8.47"
+    def room_version = '1.1.1'
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.1.1'
@@ -65,4 +67,10 @@ dependencies {
     compile project(path: ':data')
 
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+
+    api "android.arch.persistence.room:runtime:$room_version"
+    kapt "android.arch.persistence.room:compiler:$room_version" // use kapt for Kotlin
+    api "android.arch.persistence.room:rxjava2:$room_version"
 }

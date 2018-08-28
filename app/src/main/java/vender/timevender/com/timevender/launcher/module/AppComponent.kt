@@ -5,7 +5,7 @@ import vender.timevender.com.timevender.launcher.LauncherActivity
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class, RepositorylModule::class, NetworkModule::class, LoginModule::class])
+@Component(modules = [AppModule::class, RepositorylModule::class, NetworkModule::class, LoginModule::class, RoomModule::class])
 interface AppComponent {
 
     fun inject(target: LauncherActivity)

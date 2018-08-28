@@ -5,34 +5,43 @@ import android.util.Log
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
-import vender.timevender.com.data.user.LoginResponse
+import io.reactivex.schedulers.Schedulers
 import vender.timevender.com.data.user.PhoneLogin
 import vender.timevender.com.data.user.RemoteUserRepository
+import vender.timevender.com.timevender.launcher.AppDatabase
 
 class LoginViewModel : ViewModel() {
 
     lateinit var userRepository: RemoteUserRepository
+    lateinit var database: AppDatabase
 
     fun init(loginBody: PhoneLogin) {
         userRepository.getToken(loginBody)
+                .map {
+                    database.userDao().saveToken(it)
+
+                }
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                .subscribeWith(object : Observer<LoginResponse> {
+                .subscribe(object : Observer<Unit> {
                     override fun onComplete() {
-                        Log.d("LoginViewModel", "oncomplete")
+                        Log.d("room", "completed")
                     }
 
                     override fun onSubscribe(d: Disposable) {
-                        Log.d("LoginViewModel", d.toString())
+                        Log.d("room", "onSubscribe")
+
                     }
 
-                    override fun onNext(t: LoginResponse) {
-                        Log.d("LoginViewModel:token ", t.token)
+                    override fun onNext(t: Unit) {
+                        Log.d("room", "onNext")
+
                     }
 
                     override fun onError(e: Throwable) {
-                        Log.d("LoginViewModel", e.message)
+                        Log.d("room", e.message)
                     }
+
                 })
     }
 

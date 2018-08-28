@@ -4,7 +4,7 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 
 
-@Entity
+@Entity(tableName = "login_response")
 class LoginResponse : BaseResponse() {
     @PrimaryKey
     var token: String = ""
