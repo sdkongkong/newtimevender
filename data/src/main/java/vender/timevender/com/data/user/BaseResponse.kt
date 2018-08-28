@@ -2,10 +2,6 @@ package vender.timevender.com.data.user
 
 import java.io.Serializable
 
-/**
- * Created by Kevin Song on 18/12/2016.
- * Copyright (c) 2016 Woolworths. All rights reserved.
- */
 
 open class BaseResponse : Serializable {
     var status = ""
